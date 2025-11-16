@@ -43,5 +43,4 @@ match operation:
 
     case _:
         print("Invalid operation selected.")
-num1 = 20
-num2 = 10
+
