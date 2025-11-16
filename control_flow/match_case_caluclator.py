@@ -1,6 +1,7 @@
 num1 = float(input("Enter the first number: "))
-print(num1)
+10
 num2 = float(input("Enter the second number: "))
+5
 operation = input("Choose the operation (+, -, *, /): ")
 match operation:
     case "+":
@@ -8,8 +9,7 @@ match operation:
         print("Result:", result)
     case "-":
         result = num1 - num2
-        print("Result:", result)
-
+        print("Result:", result)  
     case "*":
         result = num1 * num2
         print("Result:", result)
@@ -44,3 +44,4 @@ match operation:
     case _:
         print("Invalid operation selected.")
 
+         
