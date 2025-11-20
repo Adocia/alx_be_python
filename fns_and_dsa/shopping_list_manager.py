@@ -1,6 +1,6 @@
 shopping_list = []
 while True:
-    print("\n--- Shopping List Menu ---")
+    print("Shopping List Menu")
     print("1. Add an item")
     print("2. Remove an item")
     print("3. View the list")
@@ -23,7 +23,7 @@ while True:
             print(f"'{item}' was not found in the shopping list.")
 
     elif choice == "3":
-        print("\nYour Shopping List:")
+        print("Your Shopping List:")
         if len(shopping_list) == 0:
             print("The list is empty.")
         else:
