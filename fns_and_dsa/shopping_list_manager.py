@@ -10,7 +10,7 @@ def main():
 
     while True:
         display_menu()
-        choice = int(input("Enter your choice: "))
+        choice = (input("Enter your choice: "))
 
         if choice == '1':
             item = input("Enter the item to add: ")
@@ -24,7 +24,7 @@ def main():
             
         elif choice == '3':
             print("Current shopping list:", shopping_list)
-            
+
         elif choice == '4':
             print("Good bye!")
             break
