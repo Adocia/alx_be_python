@@ -2,34 +2,38 @@ import sys
 from bank_account import BankAccount
 
 def main():
-    # Create a BankAccount instance with optional initial balance
+    # Optional initial balance from command line
     initial_balance = 0
     if len(sys.argv) > 1:
         try:
             initial_balance = float(sys.argv[1])
         except ValueError:
             print("Invalid initial balance. Defaulting to $0.")
-    
+
     account = BankAccount(initial_balance)
 
-    # Simple command loop
+    # Read commands in a simple loop
     while True:
-        print("\nOptions: deposit, withdraw, balance, exit")
-        command = input("Enter command: ").strip().lower()
+        command = input().strip().lower()  # input only, no prompt
 
         if command == "deposit":
-            amount = float(input("Enter amount to deposit: "))
-            account.deposit(amount)
+            try:
+                amount = float(input())
+                account.deposit(amount)  # deposit prints exactly once
+            except ValueError:
+                print("Invalid amount.")
         elif command == "withdraw":
-            amount = float(input("Enter amount to withdraw: "))
-            account.withdraw(amount)
+            try:
+                amount = float(input())
+                account.withdraw(amount)  # withdraw prints exactly once
+            except ValueError:
+                print("Invalid amount.")
         elif command == "balance":
-            account.display_balance()
+            account.display_balance()  # prints exactly once
         elif command == "exit":
-            print("Exiting...")
             break
         else:
-            print("Invalid command. Try again.")
+            print("Invalid command.")
 
 if __name__ == "__main__":
     main()
