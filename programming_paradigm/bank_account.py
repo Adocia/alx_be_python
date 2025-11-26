@@ -1,12 +1,11 @@
 class BankAccount:
     def __init__(self, initial_balance=0):
-        # Encapsulated attribute
         self.__account_balance = initial_balance
 
     def deposit(self, amount):
         if amount > 0:
             self.__account_balance += amount
-            print(f"Deposited: ${amount}")
+            print(f"Deposited: ${amount}")  # <-- only print here
         else:
             print("Deposit amount must be positive.")
 
@@ -23,5 +22,4 @@ class BankAccount:
             return True
 
     def display_balance(self):
-        print(f"Current Balance: ${self.__account_balance}") 
-        
+        print(f"Current Balance: ${self.__account_balance}")
