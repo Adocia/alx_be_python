@@ -2,38 +2,47 @@ import sys
 from bank_account import BankAccount
 
 def main():
-    # Optional initial balance from command line
+    # Optional initial balance
     initial_balance = 0
-    if len(sys.argv) > 1:
+    args = sys.argv[1:]
+
+    if len(args) > 0:
         try:
-            initial_balance = float(sys.argv[1])
+            # If the first argument is a number, treat it as initial balance
+            initial_balance = float(args[0])
+            args = args[1:]
         except ValueError:
-            print("Invalid initial balance. Defaulting to $0.")
+            pass  # first argument is a command, not a number
 
     account = BankAccount(initial_balance)
 
-    # Read commands in a simple loop
-    while True:
-        command = input().strip().lower()  # input only, no prompt
+    # Process commands in order
+    i = 0
+    while i < len(args):
+        cmd = args[i].lower()
 
-        if command == "deposit":
+        if cmd == "deposit":
             try:
-                amount = float(input())
-                account.deposit(amount)  # deposit prints exactly once
-            except ValueError:
-                print("Invalid amount.")
-        elif command == "withdraw":
+                amount = float(args[i + 1])
+                account.deposit(amount)
+                i += 2
+            except (IndexError, ValueError):
+                print("Invalid deposit amount.")
+                i += 2
+        elif cmd == "withdraw":
             try:
-                amount = float(input())
-                account.withdraw(amount)  # withdraw prints exactly once
-            except ValueError:
-                print("Invalid amount.")
-        elif command == "balance":
-            account.display_balance()  # prints exactly once
-        elif command == "exit":
-            break
+                amount = float(args[i + 1])
+                account.withdraw(amount)
+                i += 2
+            except (IndexError, ValueError):
+                print("Invalid withdraw amount.")
+                i += 2
+        elif cmd == "balance":
+            account.display_balance()
+            i += 1
         else:
-            print("Invalid command.")
+            print(f"Unknown command: {cmd}")
+            i += 1
 
 if __name__ == "__main__":
     main()
